@@ -1,6 +1,8 @@
 #201 means something was created
 #202 means the creating is being delayed
 #JWT json web token
+import os
+
 
 from flask import Flask
 from flask_restful import Api
@@ -13,7 +15,7 @@ from resources.store import Store,StoreList
 app = Flask(__name__)
 
 #root foler in our project, can be mysql whatever you want
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','sqlite:///data.db')
 
 #so sqlAlchemy doesn't track every change made to the sqlAlchemy made to a sesson
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
